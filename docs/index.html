@@ -1,0 +1,247 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight:300;
+		font-size:17px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+
+	h1 {
+		font-weight:300;
+        font-size: 30px;
+	}
+
+	a:link,a:visited {
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	hr {
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+
+    table td, table td * {
+        vertical-align: top;
+    }
+</style>
+
+<html>
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155335821-3"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-155335821-3');
+		</script>
+
+		<title>CNN-based synthesis of realistic high-resolution LiDAR data</title>
+		<meta property="og:title" content="CNN-based synthesis of realistic high-resolution LiDAR data" />
+	</head>
+
+	<body>
+		<br>
+
+		<!-------------------------------- HEADLINE -------------------------------->
+		<center>
+			<span style="font-size:36px">CNN-based synthesis of realistic high-resolution LiDAR data</span><br><br>
+			<table align=center width=1000px>
+				<tr>
+					<td align=center width=140px>
+						<center>
+							<span style="font-size:18px"><a href="https://larissa.triess.eu/">Larissa T. Triess</a><sup>1,2</sup></span>
+						</center>
+					</td>
+					<td align=center width=140px>
+						<center>
+							<span style="font-size:18px"><a href="https://david-peter.de/">David Peter</a><sup>1</sup></span>
+						</center>
+					</td>
+					<td align=center width=140px>
+						<center>
+							<span style="font-size:18px"><a href="https://github.com/risteon">Christoph B. Rist</a><sup>1</sup></span>
+						</center>
+					</td>
+					<td align=center width=140px>
+						<center>
+							<span style="font-size:18px"><a href="https://markus-enzweiler.de/">Markus Enzweiler</a><sup>1</sup></span>
+						</center>
+					</td>
+					<td align=center width=140px>
+						<center>
+							<span style="font-size:18px"><a href="https://www.aifb.kit.edu/web/J._Marius_Z%C3%B6llner">J. Marius Zöllner</a><sup>2,3</sup></span>
+						</center>
+					</td>
+				</tr>
+			</table>
+			<br>
+
+			<table align=center width=900px>
+				<tr>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:18px"><sup>1</sup>Mercedes Benz AG,<br>Stuttgart</span>
+						</center>
+					</td>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:18px"><sup>2</sup>Karlsruhe Institute of Technology,<br>Karlsruhe</span>
+						</center>
+					</td>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:18px"><sup>3</sup>Research Center for Information Technology, Karlsruhe</span>
+						</center>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<span style="font-size:18px">In 2019 IEEE Intelligent Vehicles Symposium (IV)</span>
+			<br>
+			<br>
+
+			<table align=center width=300px>
+				<tr>
+					<td align=center width=50px>
+						<center>
+							<span style="font-size:24px"><a href='https://arxiv.org/abs/1907.00787'>[Paper]</a></span>
+						</center>
+					</td>
+<!--					<td align=center width=50px>-->
+<!--						<center>-->
+<!--							<span style="font-size:24px"><a href='https://github.com/ltriess/pc-upsampling'>[GitHub]</a></span>-->
+<!--						</center>-->
+<!--					</td>-->
+				</tr>
+			</table>
+		</center>
+		<br>
+
+		<!-------------------------------- TEASER IMAGE -------------------------------->
+		<table align=center width=850px>
+			<tr>
+				<td width=400px>
+					<center>
+						<a href="./images/teaser.png"><img class="" src="./images/teaser.png" height="400px"></img></href></a><br>
+					</center>
+				</td>
+			</tr>
+			<td width=400px>
+				<center>
+					<span style="font-size:14px">
+						<i>
+							Examples of the different methods:
+							Synthesize (c) - (h) from (b) and compare to (a).
+							Reconstruction quality mainly differs in high frequency perturbations in object boundaries,
+							especially (e), and overall noise level, e.g. bilinear interpolation (c).
+							The red rectangle enlarges the van visible in scene.
+						</i>
+					</span>
+				</center>
+			</td>
+		</table>
+
+		<!-------------------------------- ABSTRACT -------------------------------->
+		<table align=center width=850px>
+			<center><h1>Abstract</h1></center>
+			<tr>
+				<td>
+				</td>
+			</tr>
+		</table>
+
+		<p>
+			This paper presents a novel CNN-based approach
+			for synthesizing high-resolution LiDAR point cloud data. Our
+			approach generates semantically and perceptually realistic results
+			with guidance from specialized loss-functions. First, we utilize
+			a modified per-point loss that addresses missing LiDAR point
+			measurements. Second, we align the quality of our generated
+			output with real-world sensor data by applying a perceptual loss.
+		</p>
+		<p>
+			In large-scale experiments on real-world datasets, we evaluate
+			both the geometric accuracy and semantic segmentation performance
+			using our generated data vs. ground truth. In a mean
+			opinion score testing we further assess the perceptual quality of
+			our generated point clouds. Our results demonstrate a significant
+			quantitative and qualitative improvement in both geometry and
+			semantics over traditional non CNN-based up-sampling methods
+		</p>
+		<br>
+		<br>
+
+		<hr>
+
+		<!-------------------------------- PAPER -------------------------------->
+		<table align=center width=500px>
+			<center><h1>Paper</h1></center>
+			<tr>
+				<td>
+					<a href="https://arxiv.org/abs/1907.00787"><img class="layered-paper-big" style="height:150px" src="./images/paper_thumb.png"/></a>
+				</td>
+				<td>
+					<br><br><br>
+					<span style="font-size:18pt">ArXiv <a href="https://arxiv.org/abs/1907.00787">[paper]</a> <a href="./resources/bibtex_arxiv_triess2019.txt">[bibtex]</a></span>
+					<br>
+					<span style="font-size:18pt">IEEEXplore <a href="https://ieeexplore.ieee.org/document/8813771">[paper]</a> <a href="./resources/bibtex_triess2019iv.txt">[bibtex]</a></span>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+
+		<hr>
+
+		<!-------------------------------- ACKNOWLEDGEMENTS -------------------------------->
+		<table align=center width=1100px>
+			<tr>
+				<td>
+					<left>
+						<center><h1>Acknowledgements</h1></center>
+						The authors thank Rainer Ott (University of Stuttgart) for valuable discussions and feedback.
+						They also thank all participants of the mean opinion score survey.
+					</left>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+
+	</body>
+</html>
