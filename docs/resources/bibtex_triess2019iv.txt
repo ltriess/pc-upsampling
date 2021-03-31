@@ -1,7 +1,7 @@
 @inproceedings{triess2019iv,
+    title={{CNN-based synthesis of realistic high-resolution LiDAR data}},
     author={Triess, Larissa T. and Peter, David and Rist, Christoph B. and Enzweiler, Markus and Z\"ollner, J. Marius},
     booktitle={2019 IEEE Intelligent Vehicles Symposium (IV)},
-    title={CNN-based synthesis of realistic high-resolution LiDAR data},
     year={2019},
     pages={1512-1519},
 }

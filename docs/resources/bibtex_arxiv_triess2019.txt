@@ -1,6 +1,0 @@
-@article{triess2019,
-    title={{CNN-based synthesis of realistic high-resolution LiDAR data}},
-    author={Triess, Larissa T. and Peter, David and Rist, Christoph B. and Enzweiler, Markus and Z\"ollner, J. Marius},
-    journal={arxiv},
-    year={2019},
-}

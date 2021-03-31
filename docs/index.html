@@ -1,5 +1,8 @@
 <script src="http://www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<!-- MathJax for LaTeX math in html -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <style type="text/css">
 	body {
@@ -24,6 +27,14 @@
 		color: #208799;
 	}
 
+	.img-zoom {
+		transition: transform .2s;
+	}
+
+	.img-zoom:hover {
+		transform: scale(1.05);
+	}
+
 	td.dl-link {
 		height: 160px;
 		text-align: center;
@@ -45,6 +56,11 @@
 		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
 		margin-left: 10px;
 		margin-right: 45px;
+		transition: transform .2s;
+	}
+
+	.layered-paper-big:hover {
+		transform: scale(1.05);
 	}
 
 	hr {
@@ -81,170 +97,306 @@
 
 	<body>
 		<br>
-
 		<!-------------------------------- HEADLINE -------------------------------->
-		<center>
+		<div style="text-align: center;">
+			<!-------------------------------- TITLE -------------------------------->
 			<span style="font-size:36px">CNN-based synthesis of realistic high-resolution LiDAR data</span><br><br>
-			<table align=center width=1000px>
-				<tr>
-					<td align=center width=140px>
-						<center>
-							<span style="font-size:18px"><a href="https://larissa.triess.eu/">Larissa T. Triess</a><sup>1,2</sup></span>
-						</center>
-					</td>
-					<td align=center width=140px>
-						<center>
-							<span style="font-size:18px"><a href="https://david-peter.de/">David Peter</a><sup>1</sup></span>
-						</center>
-					</td>
-					<td align=center width=140px>
-						<center>
-							<span style="font-size:18px"><a href="https://github.com/risteon">Christoph B. Rist</a><sup>1</sup></span>
-						</center>
-					</td>
-					<td align=center width=140px>
-						<center>
-							<span style="font-size:18px"><a href="https://markus-enzweiler.de/">Markus Enzweiler</a><sup>1</sup></span>
-						</center>
-					</td>
-					<td align=center width=140px>
-						<center>
-							<span style="font-size:18px"><a href="https://www.aifb.kit.edu/web/J._Marius_Z%C3%B6llner">J. Marius Zöllner</a><sup>2,3</sup></span>
-						</center>
-					</td>
-				</tr>
-			</table>
 			<br>
 
-			<table align=center width=900px>
+			<!-------------------------------- AUTHORS -------------------------------->
+			<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
 				<tr>
-					<td align=center width=300px>
-						<center>
-							<span style="font-size:18px"><sup>1</sup>Daimler AG,<br>Stuttgart</span>
-						</center>
-					</td>
-					<td align=center width=300px>
-						<center>
-							<span style="font-size:18px"><sup>2</sup>Karlsruhe Institute of Technology,<br>Karlsruhe</span>
-						</center>
-					</td>
-					<td align=center width=300px>
-						<center>
-							<span style="font-size:18px"><sup>3</sup>Research Center for Information Technology, Karlsruhe</span>
-						</center>
-					</td>
-				</tr>
-			</table>
-			<br>
-			<span style="font-size:18px">In 2019 IEEE Intelligent Vehicles Symposium (IV)</span>
-			<br>
-			<br>
-
-			<table align=center width=300px>
-				<tr>
-					<td align=center width=50px>
-						<center>
-							<span style="font-size:24px"><a href='https://arxiv.org/abs/1907.00787'>[Paper]</a></span>
-						</center>
-					</td>
-<!--					<td align=center width=50px>-->
-<!--						<center>-->
-<!--							<span style="font-size:24px"><a href='https://github.com/ltriess/pc-upsampling'>[GitHub]</a></span>-->
-<!--						</center>-->
-<!--					</td>-->
-				</tr>
-			</table>
-		</center>
-		<br>
-
-		<!-------------------------------- TEASER IMAGE -------------------------------->
-		<table align=center width=850px>
-			<tr>
-				<td width=400px>
-					<center>
-						<a href="./images/teaser.png"><img class="" src="./images/teaser.png" height="400px"></img></href></a><br>
-					</center>
+				<td style="width: 400px">
+					<span style="font-size:20px"><a href="https://larissa.triess.eu">Larissa T. Triess</a><sup>1,2</sup></span>
 				</td>
-			</tr>
-			<td width=400px>
+				<td style="width: 400px">
+					<span style="font-size:20px"><a href="https://david-peter.de">David Peter</a><sup>1</sup></span>
+				</td>
+				<td style="width: 400px">
+					<span style="font-size:20px"><a href="https://github.com/risteon">Christoph B. Rist</a><sup>1</sup></span>
+				</td>
+				<td style="width: 400px">
+					<span style="font-size:20px"><a href="https://markus-enzweiler.de/">Markus Enzweiler</a><sup>1</sup></span>
+				</td>
+				<td style="width: 400px">
+					<span style="font-size:20px"><a href="https://www.aifb.kit.edu/web/J._Marius_Z%C3%B6llner">J. Marius Zöllner</a><sup>2,3</sup></span>
+				</td>
+				</tr>
+			</table>
+			<br>
+
+			<!-------------------------------- AFFILIATIONS -------------------------------->
+			<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+				<tr>
+				<td style="width: 400px">
+					<span style="font-size:18px"><sup>1</sup>Daimler AG,<br>Stuttgart</span>
+				</td>
+				<td style="width: 400px">
+					<span style="font-size:18px"><sup>2</sup>Karlsruhe Institute of Technology,<br>Karlsruhe</span>
+				</td>
+				<td style="width: 400px">
+					<span style="font-size:18px"><sup>3</sup>Research Center for Information Technology, Karlsruhe</span>
+				</td>
+				</tr>
+			</table>
+			<br>
+
+			<!-------------------------------- CONFERENCE -------------------------------->
+			<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+				<tr>
+				<td style="width: 400px">
+					<span style="font-size:18px">In 2019 IEEE Intelligent Vehicles Symposium (IV)</span>
+				</td>
+				</tr>
+			</table>
+			<br>
+
+			<!-------------------------------- RESOURCES -------------------------------->
+			<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+				<tr>
+				<td style="width: 200px">
+					<span style="font-size:24px"><a href='https://arxiv.org/pdf/1907.00787.pdf'>[Paper]</a></span>
+					&emsp;&emsp;
+					<span style="font-size:24px"><a href='https://larissa.triess.eu/assets/pdf/triess2019iv_poster.pdf'>[Poster]</a></span>
+				</td>
+				</tr>
+			</table>
+		</div>
+
+		<br>
+		<br>
+		<!-------------------------------- TEASER IMAGE -------------------------------->
+		<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+            <tr>
+                <td style="padding: 10px">
+                    <a href="images/meta-teaser.png">
+                        <img class="img-zoom" src="images/meta-teaser.png" width="60%" alt="upsampledpointcloud"/>
+                    </a>
+                </td>
+            </tr>
+		</table>
+
+		<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+			<tr>
 				<center>
-					<span style="font-size:14px">
+					<td style="font-size:14px">
 						<i>
-							Examples of the different methods:
+							<b>Up-sampled point cloud</b>:
+							The top left shows a three dimensional point cloud recorded by a Velodyne VLP32 LiDAR scanner, with every other layer removed.
+							On the bottom left, the corresponding cylindrical projection, the LiDAR distance image, is depicted in range −90◦ < θ < +90◦.
+							The color coding depicts closer objects in brighter colors and marks missing measurements in black. For better visibility, the vertical pixel size is five times the actual size.
+							The right side shows the same scene synthesized with our approach.
+							It is up-sampled with a factor of two and every other layer is colored in violet in the top image.
+							The scene shows an urban street crossing with cars, pedestrians, bicycles, buildings and trees.
+						</i>
+					</td>
+				</center>
+			</tr>
+		</table>
+
+		<br>
+		<br>
+		<hr><!-------------------------------- ABSTRACT -------------------------------->
+
+		<div id="abstract" style="text-align: center;"><h1>Abstract</h1></div>
+
+		<table style="width: 960px; text-align: left; margin-left:auto; margin-right:auto">
+			<tr>
+			<td style="width: 400px">
+				This paper presents a novel CNN-based approach for synthesizing high-resolution LiDAR point cloud data.
+				Our approach generates semantically and perceptually realistic results with guidance from specialized loss-functions.
+				First, we utilize a modified per-point loss that addresses missing LiDAR point measurements.
+				Second, we align the quality of our generated output with real-world sensor data by applying a perceptual loss.
+				<br><br>
+				In large-scale experiments on real-world datasets, we evaluate both the geometric accuracy and semantic segmentation performance using our generated data vs. ground truth.
+				In a mean opinion score testing we further assess the perceptual quality of our generated point clouds.
+				Our results demonstrate a significant quantitative and qualitative improvement in both geometry and semantics over traditional non CNN-based up-sampling methods.
+			</td>
+			</tr>
+		</table>
+
+		<br>
+		<br>
+		<hr><!-------------------------------- PAPER -------------------------------->
+		<div id="paper" style="text-align: center;"><h1>Paper</h1></div>
+
+		<div style="text-align: center;">
+			<span><a href="https://arxiv.org/abs/1907.00787"><img class="layered-paper-big" style="height:250px" src="./images/paper_thumb.png" alt=""/></a></span>
+			<br><br><br><br>
+			<span style="font-size:20pt">Paper: <a href="https://arxiv.org/abs/1907.00787">[ArXiv]</a> <a href="https://ieeexplore.ieee.org/document/8813771">[IEEEXplore]</a></span>
+			<br><br>
+			<span style="font-size:18pt">Citation: <a href="./resources/bibtex_triess2019iv.txt">[bibtex]</a></span>
+		</div>
+
+		<br>
+		<br>
+		<hr><!-------------------------------- CONTRIBUTIONS -------------------------------->
+
+		<div id="abstract" style="text-align: center;"><h1>Contributions</h1></div>
+
+		<p style="width: 960px; text-align: left; margin-left:auto; margin-right:auto">Our main contributions are three-fold:</p>
+		<ol style="width: 960px; text-align: left; margin-left:auto; margin-right:auto">
+			<li>We present a CNN-based up-sampling approach that synthesizes semantically and perceptually realistic point clouds with three specialized loss functions.</li>
+			<li>To the best of our knowledge, our approach is first to employ perceptual losses for LiDAR-based applications.</li>
+			<li>Besides quantitative performance evaluation on largescale real-world data, we also analyze qualitative performance through a mean opinion score study involving 30 human subjects.</li>
+		</ol>
+
+		<br>
+		<br>
+		<hr><!-------------------------------- METHOD -------------------------------->
+
+		<div id="abstract" style="text-align: center;"><h1>Method</h1></div>
+
+		<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+            <tr>
+                <td style="padding: 10px">
+                    <a href="images/architecture.png">
+                        <img class="img-zoom" src="images/architecture.png" width="100%" alt="architecture"/>
+                    </a>
+                </td>
+            </tr>
+		</table>
+
+		<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+			<tr>
+				<center>
+					<td style="font-size:14px">
+						<i>
+							<b>Overview on the proposed architecture</b>:
+							It is divided into three separate networks.
+							The top shows the overall architecture with a detailed view on the residual block (green).
+							The input to the network is a down-sampled distance image of size L/2 × W with information about the missing measurements.
+							The residual up-sampling network outputs an up-sampled distance image of size L × W with in-network up-scaling.
+							Both distance images are inputs to the loss (yellow).
+							The bottom shows the three different loss functions under consideration (only one is used at a time).
+						</i>
+					</td>
+				</center>
+			</tr>
+		</table>
+
+		<br>
+		<br>
+		<table style="width: 960px; text-align: left; margin-left:auto; margin-right:auto">
+			<tr>
+			<td style="width: 400px">
+				A LiDAR scanner rotates and each module periodically measures the distance \(r_{ij}\) at its current orientation.
+				This can be described by an elevation angle \(\theta_i\) and an azimuth angle \(\varphi_j\).
+				The indices <i>i = 1...L</i> and <i>j = 1...W</i> represent the possible discrete orientations.
+				To account for missing measurements, we first define the set of all <i>valid</i> measurements as
+				\(\mathcal{V}=\{(i,j)\) | reflection at \(\theta_i\), \(\varphi_j\) received \(\}\).
+				A two-dimensional LiDAR distance image \(d_{ij}\) can then be constructed by setting
+				\(d_{ij} = r_{ij}/\)m if \((i,j)\in\mathcal{V}\) else \(d_{ij} = d^{*}\) with a proxy value of \(d^* = 0\).
+				<br><br>
+				Modified Point-wise Loss:
+				\(\mathcal{L}_\text{dist}^\alpha = \frac{1}{\alpha | \mathcal{V} |} \sum_{(i,j)\in\mathcal{V}} | d_{ij}^\text{gt} - d_{ij}^\text{pred} |^\alpha\) &emsp; \(\alpha\)=1,2
+				<br><br>
+				Perceptual Loss:
+				\(\mathcal{L}_\text{feat} = \sum_{c,i,j} | \phi\!(\vec{d}^\text{gt})_{cij} - \phi\!(\vec{d}^\text{pred})_{cij} |\)
+				<br><br>
+				Semantic Consistency Loss:
+				\(\mathcal{L}_\text{SC} = \frac{1}{2\sigma_r} \mathcal{L}^\text{1}_\text{dist}\) + log \(\sigma_r + \frac{1}{\sigma_c}\mathcal{L}^\text{cross-entropy}\) + log \(\sigma_c\)
+			</td>
+			</tr>
+		</table>
+
+		<br>
+		<br>
+		<hr><!-------------------------------- RESULTS -------------------------------->
+
+		<div id="abstract" style="text-align: center;"><h1>Experimental Results</h1></div>
+
+		<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+            <tr>
+                <td style="padding: 10px">
+                    <a href="images/teaser_a.png">
+                        <img class="img-zoom" src="images/teaser_a.png" width="100%" alt="groundtruth"/>
+                    </a>
+                </td>
+                <td style="padding: 10px">
+                    <a href="images/teaser_b.png">
+                        <img class="img-zoom" src="images/teaser_b.png" width="100%" alt="lowresolutioninput"/>
+                    </a>
+                </td>
+                <td style="padding: 10px">
+                    <a href="images/teaser_c.png">
+                        <img class="img-zoom" src="images/teaser_c.png" width="100%" alt="bilinearinterpolation"/>
+                    </a>
+                </td>
+                <td style="padding: 10px">
+                    <a href="images/teaser_d.png">
+                        <img class="img-zoom" src="images/teaser_d.png" width="100%" alt="l1distnetwork"/>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; font-size:14px">(a) Ground Truth</td>
+                <td style="padding: 10px; font-size:14px">(b) Low-resolution Input</td>
+                <td style="padding: 10px; font-size:14px">(c) Bilinear Interpolation</td>
+                <td style="padding: 10px; font-size:14px">(d) \(\mathcal{L}_\text{dist}^1\) Network</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px">
+                    <a href="images/teaser_e.png">
+                        <img class="img-zoom" src="images/teaser_e.png" width="100%" alt="l2distnetwork"/>
+                    </a>
+                </td>
+                <td style="padding: 10px">
+                    <a href="images/teaser_f.png">
+                        <img class="img-zoom" src="images/teaser_f.png" width="100%" alt="lfeature1network"/>
+                    </a>
+                </td>
+                <td style="padding: 10px">
+                    <a href="images/teaser_g.png">
+                        <img class="img-zoom" src="images/teaser_g.png" width="100%" alt="lfeature2network"/>
+                    </a>
+                </td>
+                <td style="padding: 10px">
+                    <a href="images/teaser_h.png">
+                        <img class="img-zoom" src="images/teaser_h.png" width="100%" alt="semanticconsistency"/>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; font-size:14px">(e) \(\mathcal{L}_\text{dist}^2\) Network</td>
+                <td style="padding: 10px; font-size:14px">(f) \(\mathcal{L}_{\text{feat},1}\) Network</td>
+                <td style="padding: 10px; font-size:14px">(g) \(\mathcal{L}_{\text{feat},2}\) Network</td>
+                <td style="padding: 10px; font-size:14px">(h) Semantic consistency \(\mathcal{L}_{SC}\)</td>
+            </tr>
+			<tr>
+		</table>
+
+		<table style="width: 960px; text-align: center; margin-left:auto; margin-right:auto">
+			<tr>
+				<center>
+					<td style="font-size:14px">
+						<i>
+							<b>Examples of the different methods</b>:
 							Synthesize (c) - (h) from (b) and compare to (a).
 							Reconstruction quality mainly differs in high frequency perturbations in object boundaries,
 							especially (e), and overall noise level, e.g. bilinear interpolation (c).
 							The red rectangle enlarges the van visible in scene.
 						</i>
-					</span>
+					</td>
 				</center>
+			</tr>
+		</table>
+
+		<br>
+		<br>
+		<hr><!-------------------------------- ACKNOWLEDGEMENTS -------------------------------->
+
+		<div id="abstract" style="text-align: center;"><h1>Acknowledgements</h1></div>
+
+		<table style="width: 960px; text-align: left; margin-left:auto; margin-right:auto">
+			<tr>
+			<td style="width: 400px">
+				The authors thank Rainer Ott (University of Stuttgart) for valuable discussions and feedback.
+				They also thank all participants of the mean opinion score survey.
 			</td>
-		</table>
-
-		<!-------------------------------- ABSTRACT -------------------------------->
-		<table align=center width=850px>
-			<center><h1>Abstract</h1></center>
-			<tr>
-				<td>
-				</td>
 			</tr>
 		</table>
 
-		<p>
-			This paper presents a novel CNN-based approach
-			for synthesizing high-resolution LiDAR point cloud data. Our
-			approach generates semantically and perceptually realistic results
-			with guidance from specialized loss-functions. First, we utilize
-			a modified per-point loss that addresses missing LiDAR point
-			measurements. Second, we align the quality of our generated
-			output with real-world sensor data by applying a perceptual loss.
-		</p>
-		<p>
-			In large-scale experiments on real-world datasets, we evaluate
-			both the geometric accuracy and semantic segmentation performance
-			using our generated data vs. ground truth. In a mean
-			opinion score testing we further assess the perceptual quality of
-			our generated point clouds. Our results demonstrate a significant
-			quantitative and qualitative improvement in both geometry and
-			semantics over traditional non CNN-based up-sampling methods
-		</p>
-		<br>
-		<br>
-
-		<hr>
-
-		<!-------------------------------- PAPER -------------------------------->
-		<table align=center width=500px>
-			<center><h1>Paper</h1></center>
-			<tr>
-				<td>
-					<a href="https://arxiv.org/abs/1907.00787"><img class="layered-paper-big" style="height:150px" src="./images/paper_thumb.png"/></a>
-				</td>
-				<td>
-					<br><br><br>
-					<span style="font-size:18pt">ArXiv <a href="https://arxiv.org/abs/1907.00787">[paper]</a> <a href="./resources/bibtex_arxiv_triess2019.txt">[bibtex]</a></span>
-					<br>
-					<span style="font-size:18pt">IEEEXplore <a href="https://ieeexplore.ieee.org/document/8813771">[paper]</a> <a href="./resources/bibtex_triess2019iv.txt">[bibtex]</a></span>
-				</td>
-			</tr>
-		</table>
-		<br>
-		<br>
-
-		<hr>
-
-		<!-------------------------------- ACKNOWLEDGEMENTS -------------------------------->
-		<table align=center width=1100px>
-			<tr>
-				<td>
-					<left>
-						<center><h1>Acknowledgements</h1></center>
-						The authors thank Rainer Ott (University of Stuttgart) for valuable discussions and feedback.
-						They also thank all participants of the mean opinion score survey.
-					</left>
-				</td>
-			</tr>
-		</table>
 		<br>
 		<br>
 
