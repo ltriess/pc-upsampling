@@ -1,5 +1,15 @@
 <script src="http://www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<script type="text/javascript">
+	// Copy text to clipboard
+	function copyToClipboard(element) {
+		var $temp = $("<textarea>");
+		$("body").append($temp);
+		$temp.val($(element).text()).select();
+		document.execCommand("copy");
+		$temp.remove();
+	}
+</script>
 <!-- MathJax for LaTeX math in html -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -72,6 +82,14 @@
     table td, table td * {
         vertical-align: top;
     }
+
+    pre code {
+		background-color: #eee;
+		border: 1px solid #999;
+		display: block;
+		padding: 20px;
+		font-family: monospace;
+	}
 </style>
 
 <html>
@@ -224,8 +242,27 @@
 			<span><a href="https://arxiv.org/abs/1907.00787"><img class="layered-paper-big" style="height:250px" src="./images/paper_thumb.png" alt=""/></a></span>
 			<br><br><br><br>
 			<span style="font-size:20pt">Paper: <a href="https://arxiv.org/abs/1907.00787">[ArXiv]</a> <a href="https://ieeexplore.ieee.org/document/8813771">[IEEEXplore]</a></span>
-			<br><br>
-			<span style="font-size:18pt">Citation: <a href="./resources/bibtex_triess2019iv.txt">[bibtex]</a></span>
+		</div>
+		<br>
+		<div style="text-align: center;">
+			<span style="font-size:18pt">
+				Citation:
+				<button type="button" onclick="copyToClipboard('#bibtex')">Copy</button>
+				<button type="button" onclick="window.open('./resources/triess2019iv.bib')">Download</button>
+			</span>
+<!---------><pre><code id="bibtex" style="width: 960px; text-align: left; margin-left:auto; margin-right:auto">@inproceedings{triess2019iv,
+<!--------->  title = {{CNN-based synthesis of realistic high-resolution LiDAR data}},
+<!--------->  author = {
+<!--------->    Triess, Larissa T. and
+<!--------->    Peter, David and
+<!--------->    Rist, Christoph B. and
+<!--------->    Enzweiler, Markus and
+<!--------->    Z\"ollner, J. Marius
+<!--------->  },
+<!--------->  booktitle = {Proc. IEEE Intelligent Vehicles Symposium (IV)},
+<!--------->  year = {2019},
+<!--------->  pages = {1512-1519},
+<!--------->}</code></pre>
 		</div>
 
 		<br>
